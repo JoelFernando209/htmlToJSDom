@@ -1,0 +1,11 @@
+.boxInput {
+  height: 100%;
+  
+  background-color: #330c54;
+  border: none;
+  color: white;
+
+  &:focus {
+    outline: none;
+  }
+}
