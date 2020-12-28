@@ -1,13 +1,15 @@
 import './scss/main.scss';
-import { codeMirrorCommonConfig } from './js/codeMirrorCommonConfig.js';
+import { codeMirrorCommonConfig } from './js/config/codeMirrorCommonConfig.js';
 
-const textEditorHtml = CodeMirror(document.querySelector('.boxInput--html'), Object.assign({
+const textEditorHtml = CodeMirror.fromTextArea(document.querySelector('.boxInput--html'), Object.assign({
   mode: 'xml',
   htmlMode: true
 }, codeMirrorCommonConfig)
 );
 
-const textEditorJs = CodeMirror(document.querySelector('.boxInput--js'), Object.assign({
-  mode: 'javascript',
+const textEditorJs = CodeMirror.fromTextArea(document.querySelector('.boxInput--js'), Object.assign({
+  mode: {
+    name: 'javascript'
+  },
 }, codeMirrorCommonConfig)
 );
