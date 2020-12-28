@@ -47,12 +47,18 @@ exports.loadHtml = () => ({
     rules: [
       {
         test: /\.html$/,
-        oneOf: [
-          {
-            resourceQuery: /require/,
-            use: 'html-loader'
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            list: [
+              {
+                tag: 'img',
+                attribute: 'src',
+                type: 'src'
+              }
+            ]
           }
-        ]
+        }
       }
     ]
   }
