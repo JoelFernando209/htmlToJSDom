@@ -1,6 +1,26 @@
 .statusSquare {
+  position: absolute;
+  left: 50%;
+  top: 3rem;
+  transform: translateX(-50%);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: lighten(#282a36, 5%);
+  border-radius: 1rem;
+  box-shadow: 1rem 1rem 3rem rgba(black, .2);
+  
+  width: 5rem;
+  height: 5rem;
+  
+  z-index: 100;
   
   &__icon {
-     
+    max-width: 100%;
+    max-height: 100%;
+    transition: all .3s;
+    animation: loadingStatusAnimation 3s infinite;
   }
 }
