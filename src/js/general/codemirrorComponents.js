@@ -1,1 +1,5 @@
-export const getTextEditorValue = ({ editor }) => editor.getValue();
+export const getTextEditorValue = ({ editor }) => {
+  return {
+    htmlInput: editor.getValue()
+  }
+};
