@@ -6,12 +6,10 @@ export const deleteComments = ({ htmlInput }) => {
   };
 };
 
-export const putOutputInBoard = ({ htmlInput }) => {
-  const inputBoard = document.querySelector('.htmlInputBoard');
-  
-  inputBoard.innerHTML = htmlInput;
+export const deleteEnters = ({ htmlInput }) => {
+  const deleteEnters = /(\r\n|\n|\r)/gm;
   
   return {
-    htmlInput
-  };
-};
+    htmlInput: htmlInput.replace(deleteEnters, '')
+  }
+}
