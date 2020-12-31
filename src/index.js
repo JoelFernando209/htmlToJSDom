@@ -1,7 +1,7 @@
 import './scss/main.scss';
 import { codeMirrorCommonConfig } from './js/config/codeMirrorCommonConfig.js';
-import { createProcess } from './js/general/generalConfig.js';
-import { getTextEditorValue } from './js/general/codemirrorComponents.js';
+import { createProcess, resetOutput } from './js/general/generalConfig.js';
+import { getTextEditorValue, setJSEditorOutput } from './js/general/codemirrorComponents.js';
 import { deleteComments, deleteEnters } from './js/htmlManipulation/phasesComponents.js';
 import { putOutputInBoard, getParentElementsHtmlBoard, loopChildNodes } from './js/htmlManipulation/domComponents.js';
 
@@ -11,7 +11,7 @@ const textEditorHtml = CodeMirror.fromTextArea(document.querySelector('.boxInput
 }, codeMirrorCommonConfig)
 );
 
-const textEditorJs = CodeMirror.fromTextArea(document.querySelector('.boxInput--js'), Object.assign({
+export const textEditorJs = CodeMirror.fromTextArea(document.querySelector('.boxInput--js'), Object.assign({
   mode: {
     name: 'javascript'
   },
@@ -20,12 +20,14 @@ const textEditorJs = CodeMirror.fromTextArea(document.querySelector('.boxInput--
 
 const htmlConvertProcess = createProcess(
   [
+    setJSEditorOutput,
     loopChildNodes,
     getParentElementsHtmlBoard,
     putOutputInBoard,
     deleteEnters,
     deleteComments,
-    getTextEditorValue
+    getTextEditorValue,
+    resetOutput
   ],
   {
     editor: textEditorHtml
@@ -33,5 +35,8 @@ const htmlConvertProcess = createProcess(
 );
 
 textEditorHtml.on('keyup', () => {
+  const statusSquare = document.querySelector('.statusSquare__icon');
+  
   htmlConvertProcess(textEditorHtml);
+  
 })

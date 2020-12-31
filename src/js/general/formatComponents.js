@@ -31,7 +31,7 @@ export const convertToCamelCase = (input) => {
       result += tempStr;
     }
     
-    return result+'Element';
+    return result;
   } catch(e) {
     console.log('ERROR, input: ', input)
   }

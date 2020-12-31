@@ -27,3 +27,13 @@ export const modifyOutput = (modify) => {
   
   return outputJs;
 }
+
+export const resetOutput = ({ editor }) => {
+  outputJs = `
+// Consider htmlInputBoardElement as the parent element of all the HTML you putted in the input.
+  `;
+  
+  return {
+    editor
+  }
+}
