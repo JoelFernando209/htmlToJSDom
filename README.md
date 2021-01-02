@@ -46,3 +46,7 @@ parentElement.appendChild(randomHashElement);
 2. Tags like `<html> <body>, <meta>, <head>`, etc doesn't work well and might break the output because the input that you put is actually inserted in the DOM of the page. Avoid this tags.
   
 3. For now, `<br>` tags are not supported and are considered as elements.
+
+4. The converter will just get the largest class or id in the case that an element has more than 1 class
+
+5. For now, repeated classes or id's are not well supported and might do strange things in the output.
