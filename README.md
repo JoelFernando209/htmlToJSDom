@@ -4,8 +4,8 @@
 
 Just copy & paste your HTML and we convert it to JS DOM ready to copy to your code 😆
 
-### Requirements
-1. Its a requirement to include class/id attributes to all your elements in the HTML, the values of that attributes are going to be used as the names of the variables of the JS selectors and added to its className/id. If they are not included, your elements with no selector are going to be changed giving a random hash class to it (which its obviously not ideal). **Example:**
+### Requirements & Aclarations
+1. Its a requirement to include class/id attributes to all your elements in the HTML, the values of that attributes are going to be used as the names of the variables of the JS selectors and added to its className/id. If they are not included, your elements with no selector are going to be changed giving a random id class to it (which its obviously not ideal). **Example:**
 ```html
 <!--HTML-->
 <div class='parent'>
@@ -42,3 +42,7 @@ parentElement.appendChild(parentTitleElement);
 parentElement.appendChild(parentContentElement);
 parentElement.appendChild(randomHashElement);
 ```
+
+2. Tags like `<html> <body>, <meta>, <head>`, etc doesn't work well and might break the output because the input that you put is actually inserted in the DOM of the page. Avoid this tags.
+  
+3. For now, `<br>` tags are not supported and are considered as elements.
