@@ -16,8 +16,6 @@ export const getParentElementsHtmlBoard = ({ htmlInput }) => {
   
   const inputBoardChilds = inputBoard.childNodes;
   
-  console.log(inputBoardChilds);
-  
   return {
     htmlInput,
     arrChildNodes: inputBoardChilds
@@ -54,7 +52,7 @@ export const getClassOrIdElement = ({ element }) => {
   }
 }
 
-export const putOutputClassOrId = ({ child }) => {
+export const putOutputClassOrId = ({ child, attrBlock }) => {
   const parent = child.parentElement;
   const selectorParent = getClassOrIdElement({ element: parent })+'Element';
   
@@ -65,9 +63,9 @@ export const putOutputClassOrId = ({ child }) => {
     modifyOutput(`
 const ${elementClass} = document.createElement('${child.tagName.toLowerCase()}');
 ${elementClass}.className = '${child.getAttribute('class')}';
+${attrBlock}
 ${selectorParent}.appendChild(${elementClass});
-      
-    `);
+`);
     
   } else if(child.hasAttribute('id')) {
     const longestId = selectLongestSelector(child.getAttribute('id'));
@@ -76,9 +74,9 @@ ${selectorParent}.appendChild(${elementClass});
     modifyOutput(`
 const ${elementId} = document.createElement('${child.tagName.toLowerCase()}');
 ${elementId}.id = '${child.getAttribute('id')}';
+${attrBlock}
 ${selectorParent}.appendChild(${elementId});
-      
-    `);
+`);
     
   }
   
@@ -87,15 +85,39 @@ ${selectorParent}.appendChild(${elementId});
   }
 };
 
-export const putOutputText = ({ child }) => {
-  const parent = child.parentElement;
-  let selectorParent = getClassOrIdElement({ element: parent })+'Element';
+export const createAttrBlock = ({ child }) => {
+  const childAttributes = Object.values(child.attributes);
   
-  modifyOutput(`
+  if(childAttributes.length > 0) {
+    let outputBlock = ``;
+    const childSelector = getClassOrIdElement({ element: child });
+    
+    childAttributes.forEach(attribute => {
+      if(attribute.name !== 'class' && attribute.name !== 'id') {
+      outputBlock += `
+${childSelector}Element.setAttribute('${attribute.name}', '${attribute.value}');
+`
+      }
+      
+    });
+    
+    return outputBlock;
+  } else {
+    return '';
+  }
+  
+}
+
+export const putOutputText = ({ child }) => {
+  if(child.textContent.trim() !== '') {
+    const parent = child.parentElement;
+    let selectorParent = getClassOrIdElement({ element: parent })+'Element';
+    
+    modifyOutput(`
 const ${selectorParent}Text = document.createTextNode('${child.textContent.trim()}');
 ${selectorParent}.appendChild(${selectorParent}Text)
-    
-  `)
+`);
+  }
   
   return {
     child
@@ -127,7 +149,7 @@ export const loopChildNodes = ({ htmlInput, arrChildNodes }) => {
     
     checkIfElementHasNotClassOrId({ child });
     
-    putOutputClassOrId({ child });
+    putOutputClassOrId({ child, attrBlock: createAttrBlock({ child }) });
     
     checkIfElementHasChildNodes({ htmlInput, child });
   })

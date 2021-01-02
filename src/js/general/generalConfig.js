@@ -23,8 +23,6 @@ export const createNewId = getNewId();
 export const modifyOutput = (modify) => {
   outputJs += modify;
   
-  console.log(outputJs);
-  
   return outputJs;
 }
 
