@@ -73,7 +73,7 @@ exports.loadFileImages = ({ output } = {}) => ({
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[hash].[ext]',
+              name: '[name].[ext]',
               outputPath: output
             }
           }

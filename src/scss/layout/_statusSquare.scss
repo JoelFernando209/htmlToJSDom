@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   background-color: lighten(#282a36, 5%);
   border-radius: 1rem;
   box-shadow: 1rem 1rem 3rem rgba(black, .2);
@@ -22,5 +22,9 @@
     max-height: 100%;
     transition: all .3s;
     animation: loadingStatusAnimation 3s infinite;
+  }
+  
+  @media (max-width: 669px) {
+    top: 47%;
   }
 }

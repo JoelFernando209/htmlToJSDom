@@ -5,6 +5,21 @@
   height: 100vh;
   
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-gap: 3rem;
+  
+  &__title {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'monospace', sans-serif;
+    background-image: linear-gradient(to right bottom ,#E44D26, #F0DB4F);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
 }

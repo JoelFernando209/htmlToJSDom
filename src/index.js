@@ -1,3 +1,6 @@
+import loadingState from './assets/loading-state.svg';
+import completedState from './assets/completed-state.svg';
+
 import './scss/main.scss';
 import { codeMirrorCommonConfig } from './js/config/codeMirrorCommonConfig.js';
 import { createProcess, resetOutput } from './js/general/generalConfig.js';
@@ -37,6 +40,14 @@ const htmlConvertProcess = createProcess(
 textEditorHtml.on('keyup', () => {
   const statusSquare = document.querySelector('.statusSquare__icon');
   
+  statusSquare.setAttribute('src', '../assets/loading-state.svg');
+  
   htmlConvertProcess(textEditorHtml);
+  
+  statusSquare.setAttribute('src', '../assets/completed-state.svg');
+  
+  if(getTextEditorValue({ editor: textEditorHtml }).htmlInput.length === 0) {
+    statusSquare.setAttribute('src', '../assets/hourglass-wait.svg');
+  }
   
 })

@@ -1,4 +1,8 @@
 .CodeMirror {
   height: auto;
   word-wrap: break-word;
+  
+  @media (max-width: 669px) {
+    height: 100%;
+  }
 }
