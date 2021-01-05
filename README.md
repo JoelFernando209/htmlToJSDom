@@ -49,4 +49,4 @@ parentElement.appendChild(randomHashElement);
 
 4. The converter will just get the largest class or id in the case that an element has more than 1 class
 
-5. For now, repeated classes or id's are not well supported and might do strange things in the output.
+5. For now, repeated classes or id's in different elements are not well supported and might do strange things in the output.
