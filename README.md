@@ -1,5 +1,3 @@
-🚧Under construction🚧
-
 **HTML** to **JS DOM** converter 🌊
 
 Just copy & paste your HTML and we convert it to JS DOM ready to copy to your code 😆
