@@ -11,7 +11,7 @@ Just copy & paste your HTML and we convert it to JS DOM ready to copy to your co
   <div class='parent__content'>
     This is a interesting dev blog
   </div>
-  <div> <!--In the output this is going to be changed to <div class='randomHash'>-->
+  <div> <!--In the output this is going to be changed to <div class='element-${id}'>-->
     This is a footer with no class
   </div>
 </div>
